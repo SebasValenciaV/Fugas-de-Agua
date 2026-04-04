@@ -507,7 +507,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-primary-300 text-sm">Llámanos</p>
-                    <p className="text-xl font-bold">+57 3003197620</p>
+                    <p className="text-xl font-bold">+123 456 7890</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
