@@ -1,0 +1,7 @@
+{
+  "name": "Fugas de Agua - Detección y Reparación Especializada",
+  "description": "Sitio web de alta conversión para servicios de detección y localización de fugas de agua sin romper paredes. Optimizado para emergencias y generación de leads.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
