@@ -74,7 +74,7 @@ const Navbar = () => {
             </a>
           ))}
           <a 
-            href="tel:+1234567890" 
+            href="tel:+573003197620" 
             className="flex items-center gap-2 bg-primary-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-200"
           >
             <Phone size={18} />
@@ -112,7 +112,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a 
-                href="tel:+1234567890" 
+                href="tel:+573003197620" 
                 className="flex items-center justify-center gap-2 bg-primary-600 text-white py-4 rounded-xl font-bold"
               >
                 <Phone size={20} />
@@ -181,23 +181,23 @@ export default function App() {
                 Atención Inmediata 24/7
               </div>
               <h1 className="text-4xl md:text-6xl font-display font-extrabold text-primary-950 leading-tight mb-6">
-                ¿Tienes una fuga de agua y no sabes de dónde viene?
+                ¿Tienes una fuga de agua en Medellín y no sabes de dónde viene?
               </h1>
               <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Detectamos y localizamos fugas ocultas con tecnología electrónica avanzada. 
+                Detectamos y localizamos fugas ocultas con tecnología de <span className="font-bold text-primary-700">Geófono de alta precisión</span>. 
                 <span className="font-bold text-primary-700"> Sin romper paredes innecesariamente.</span>
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
                 <a 
-                  href="#contacto" 
+                  href="tel:+573003197620" 
                   className="w-full sm:w-auto bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary-200 hover:bg-primary-700 transition-all flex items-center justify-center gap-2"
                 >
                   Solicitar diagnóstico ahora
                   <ArrowRight size={20} />
                 </a>
                 <a 
-                  href="https://wa.me/1234567890" 
+                  href="https://wa.me/573003197620" 
                   className="w-full sm:w-auto bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-accent-100 hover:bg-accent-600 transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle size={20} />
@@ -225,8 +225,8 @@ export default function App() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Detección de fugas profesional" 
+                  src="https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&q=80&w=1000" 
+                  alt="Herramientas de plomería y geófono" 
                   className="w-full h-auto"
                   referrerPolicy="no-referrer"
                 />
@@ -289,16 +289,16 @@ export default function App() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-5xl mb-6 leading-tight">La solución definitiva sin obras innecesarias</h2>
+              <h2 className="text-3xl md:text-5xl mb-6 leading-tight">Detección con Geófono en Medellín</h2>
               <p className="text-primary-200 text-lg mb-10 leading-relaxed">
-                Utilizamos equipos de última generación para localizar el punto exacto de la fuga. Ahorra tiempo, dinero y evita el caos de romper toda tu casa.
+                Utilizamos tecnología de geófono acústico para localizar el punto exacto de la fuga en tuberías de cobre, PVC y CPVC. Ahorra tiempo, dinero y evita el caos de romper toda tu casa.
               </p>
 
               <div className="space-y-6">
                 {[
-                  { title: "Detección electrónica", desc: "Geófonos y cámaras térmicas de alta precisión." },
-                  { title: "Reparación puntual", desc: "Solo intervenimos donde es estrictamente necesario." },
-                  { title: "Técnicos certificados", desc: "Personal experto con años de entrenamiento especializado." },
+                  { title: "Inspección con Geófono", desc: "Localización acústica de alta precisión para todo tipo de tuberías." },
+                  { title: "Tuberías Cobre, PVC y CPVC", desc: "Expertos en reparación y mantenimiento de redes hidráulicas modernas." },
+                  { title: "Técnicos en Medellín", desc: "Personal experto con años de entrenamiento especializado en la región." },
                 ].map((benefit, idx) => (
                   <div key={idx} className="flex gap-4">
                     <div className="bg-primary-800 p-1.5 rounded-full h-fit mt-1">
@@ -315,14 +315,14 @@ export default function App() {
 
             <div className="lg:w-1/2 grid grid-cols-2 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=600" 
-                alt="Equipo técnico" 
+                src="https://images.unsplash.com/photo-1542013936693-884638332954?auto=format&fit=crop&q=80&w=600" 
+                alt="Tuberías de PVC y CPVC" 
                 className="rounded-2xl shadow-2xl w-full h-64 object-cover mt-8"
                 referrerPolicy="no-referrer"
               />
               <img 
                 src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=600" 
-                alt="Reparación profesional" 
+                alt="Tubos de cobre y herramientas" 
                 className="rounded-2xl shadow-2xl w-full h-64 object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -346,7 +346,7 @@ export default function App() {
               { icon: <Waves className="text-primary-600" />, title: "Fugas en Piscinas", desc: "Detección en vasos, skimmers y sistemas de filtración sin vaciar." },
               { icon: <Home className="text-primary-600" />, title: "Baños y Cocinas", desc: "Inspección técnica en zonas de alta humedad y desagües." },
               { icon: <Droplets className="text-primary-600" />, title: "Fugas en Jardines", desc: "Localización en sistemas de riego y acometidas exteriores." },
-              { icon: <Zap className="text-primary-600" />, title: "Inspección Electrónica", desc: "Diagnóstico completo con cámaras y sensores acústicos." },
+              { icon: <Zap className="text-primary-600" />, title: "Inspección con Geófono", desc: "Diagnóstico completo con sensores acústicos de alta sensibilidad." },
             ].map((service, idx) => (
               <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
                 <div className="bg-primary-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
@@ -406,14 +406,14 @@ export default function App() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
               <a 
-                href="tel:+1234567890" 
+                href="tel:+573003197620" 
                 className="bg-white text-emergency-600 px-8 py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all shadow-xl"
               >
                 <Phone size={24} />
                 Llamar ahora
               </a>
               <a 
-                href="https://wa.me/1234567890" 
+                href="https://wa.me/573003197620" 
                 className="bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-accent-600 transition-all shadow-xl"
               >
                 <MessageCircle size={24} />
@@ -468,11 +468,11 @@ export default function App() {
           <div className="space-y-2">
             <FAQItem 
               question="¿Cómo detectan fugas sin romper paredes?" 
-              answer="Utilizamos tecnología avanzada que incluye geófonos (escucha acústica), cámaras termográficas para detectar cambios de temperatura y gas trazador en casos complejos. Esto nos permite marcar el punto exacto de la fuga con un margen de error mínimo." 
+              answer="Utilizamos tecnología de geófono acústico de alta precisión. Este equipo nos permite escuchar el sonido característico del agua escapando a presión por la tubería, localizando el punto exacto sin necesidad de picar paredes o suelos innecesariamente." 
             />
             <FAQItem 
               question="¿Cuánto tarda el servicio de detección?" 
-              answer="En la mayoría de los casos residenciales, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías y el tamaño de la propiedad." 
+              answer="En la mayoría de los casos en Medellín, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías (cobre, PVC o CPVC) y el tamaño de la propiedad." 
             />
             <FAQItem 
               question="¿Atienden emergencias las 24 horas?" 
@@ -495,9 +495,9 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             <div className="lg:w-1/2 p-12 md:p-20 bg-primary-900 text-white">
-              <h2 className="text-3xl md:text-5xl mb-6">Detectamos y solucionamos fugas antes de que dañen tu hogar</h2>
+              <h2 className="text-3xl md:text-5xl mb-6">Detectamos fugas con Geófono en todo Medellín</h2>
               <p className="text-primary-200 text-lg mb-10">
-                No dejes que una pequeña filtración se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo.
+                No dejes que una pequeña filtración en tus tubos de cobre o PVC se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo.
               </p>
               
               <div className="space-y-6">
@@ -507,7 +507,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-primary-300 text-sm">Llámanos</p>
-                    <p className="text-xl font-bold">+123 456 7890</p>
+                    <p className="text-xl font-bold">+57 3003197620</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -516,7 +516,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-primary-300 text-sm">Email</p>
-                    <p className="text-xl font-bold">contacto@fugasdeagua.com</p>
+                    <p className="text-xl font-bold">jorge.valencia.benitez@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -524,8 +524,8 @@ export default function App() {
                     <MapPin className="text-accent-500" />
                   </div>
                   <div>
-                    <p className="text-primary-300 text-sm">Cobertura</p>
-                    <p className="text-xl font-bold">Toda el área metropolitana</p>
+                    <p className="text-primary-300 text-sm">Ubicación</p>
+                    <p className="text-xl font-bold">Medellín, Antioquia</p>
                   </div>
                 </div>
               </div>
@@ -599,7 +599,7 @@ export default function App() {
               <ul className="space-y-4 text-slate-400">
                 <li className="flex items-center gap-3"><Phone size={18} className="text-primary-500" /> +57 3003197620</li>
                 <li className="flex items-center gap-3"><MessageCircle size={18} className="text-primary-500" /> WhatsApp Directo</li>
-                <li className="flex items-center gap-3"><Mail size={18} className="text-primary-500" /> contacto@fugasdeagua.com</li>
+                <li className="flex items-center gap-3"><Mail size={18} className="text-primary-500" /> jorge.valencia.benitez@gmail.com</li>
                 <li className="flex items-center gap-3"><Clock size={18} className="text-primary-500" /> 24 Horas / 7 Días</li>
               </ul>
             </div>
@@ -607,11 +607,11 @@ export default function App() {
             <div>
               <h4 className="text-xl font-bold mb-6">Zona de Cobertura</h4>
               <p className="text-slate-400 mb-4">
-                Atendemos en toda el área metropolitana y poblaciones cercanas.
+                Atendemos en toda la ciudad de Medellín y el Valle de Aburrá.
               </p>
               <div className="bg-slate-800 p-4 rounded-xl border border-slate-700">
                 <p className="text-sm text-slate-300">¿Dudas sobre tu zona?</p>
-                <a href="tel:+1234567890" className="text-primary-400 font-bold hover:underline">Consultar ahora</a>
+                <a href="tel:+573003197620" className="text-primary-400 font-bold hover:underline">Consultar ahora</a>
               </div>
             </div>
           </div>
@@ -631,7 +631,7 @@ export default function App() {
       
       {/* WhatsApp Floating Button */}
       <a 
-        href="https://wa.me/1234567890" 
+        href="https://wa.me/573003197620" 
         className="fixed bottom-6 right-6 z-50 bg-accent-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
         aria-label="Contactar por WhatsApp"
       >
@@ -644,7 +644,7 @@ export default function App() {
       {/* Mobile Fixed Call Button */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 p-4 bg-white/80 backdrop-blur-lg border-t border-slate-200">
         <a 
-          href="tel:+1234567890" 
+          href="tel:+573003197620" 
           className="flex items-center justify-center gap-3 bg-primary-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary-200"
         >
           <Phone size={24} />
