@@ -597,7 +597,7 @@ export default function App() {
             <div>
               <h4 className="text-xl font-bold mb-6">Contacto</h4>
               <ul className="space-y-4 text-slate-400">
-                <li className="flex items-center gap-3"><Phone size={18} className="text-primary-500" /> +123 456 7890</li>
+                <li className="flex items-center gap-3"><Phone size={18} className="text-primary-500" /> +57 3003197620</li>
                 <li className="flex items-center gap-3"><MessageCircle size={18} className="text-primary-500" /> WhatsApp Directo</li>
                 <li className="flex items-center gap-3"><Mail size={18} className="text-primary-500" /> contacto@fugasdeagua.com</li>
                 <li className="flex items-center gap-3"><Clock size={18} className="text-primary-500" /> 24 Horas / 7 Días</li>
