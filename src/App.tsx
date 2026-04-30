@@ -552,81 +552,62 @@ export default function App() {
       {/* --- CTA FINAL SECTION --- */}
       <section id="contacto" className="py-20 bg-primary-50">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
-            <div className="w-full lg:w-1/2 p-12 md:p-20 bg-primary-900 text-white flex flex-col justify-center">
-              <h2 className="text-3xl md:text-5xl mb-6 font-display font-bold leading-tight">
+          <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden">
+            <div className="w-full p-12 md:p-20 bg-primary-900 text-white text-center flex flex-col items-center">
+              <h2 className="text-3xl md:text-5xl mb-6 font-display font-bold leading-tight max-w-3xl">
                 {t.ctaFinal.title}
               </h2>
-              <p className="text-primary-200 text-lg mb-10 leading-relaxed">
+              <p className="text-primary-200 text-lg mb-12 leading-relaxed max-w-2xl">
                 {t.ctaFinal.subtitle}
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary-800 p-3 rounded-xl">
-                    <Phone className="text-accent-500" />
+              <div className="flex flex-col md:flex-row justify-center gap-8 mb-12 w-full max-w-4xl">
+                <div className="flex flex-col items-center gap-4 p-6 rounded-3xl bg-primary-800/50 backdrop-blur-sm border border-primary-700 w-full sm:w-auto min-w-[240px]">
+                  <div className="bg-primary-700 p-4 rounded-2xl">
+                    <Phone className="text-accent-500" size={24} />
                   </div>
                   <div>
-                    <p className="text-primary-300 text-sm">{t.footer.contact}</p>
-                    <p className="text-xl font-bold">+57 3003197620</p>
+                    <p className="text-primary-300 text-sm mb-1">{t.footer.contact}</p>
+                    <p className="text-2xl font-bold">+57 3003197620</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary-800 p-3 rounded-xl">
-                    <MapPin className="text-accent-500" />
+
+                <div className="flex flex-col items-center gap-4 p-6 rounded-3xl bg-primary-800/50 backdrop-blur-sm border border-primary-700 w-full sm:w-auto min-w-[240px]">
+                  <div className="bg-primary-700 p-4 rounded-2xl">
+                    <MapPin className="text-accent-500" size={24} />
                   </div>
                   <div>
-                    <p className="text-primary-300 text-sm">{t.footer.coverage}</p>
-                    <p className="text-xl font-bold">{t.ctaFinal.location}</p>
+                    <p className="text-primary-300 text-sm mb-1">{t.footer.coverage}</p>
+                    <p className="text-2xl font-bold">{t.ctaFinal.location}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center gap-4 p-6 rounded-3xl bg-primary-800/50 backdrop-blur-sm border border-primary-700 w-full sm:w-auto min-w-[240px]">
+                  <div className="bg-primary-700 p-4 rounded-2xl">
+                    <Mail className="text-accent-500" size={24} />
+                  </div>
+                  <div>
+                    <p className="text-primary-300 text-sm mb-1">Email</p>
+                    <p className="text-lg font-bold break-all">jorge.valencia.benitez@gmail.com</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6 w-full justify-center">
                 <a 
                   href="tel:+573003197620" 
-                  className="bg-white text-primary-900 px-8 py-4 rounded-xl font-bold text-center hover:bg-primary-50 transition-colors shadow-lg"
+                  className="bg-white text-primary-900 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-primary-50 transition-all shadow-xl hover:scale-105"
                 >
                   {t.emergency.call}
                 </a>
                 <a 
                   href="https://wa.me/573003197620" 
-                  className="bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-accent-600 transition-colors shadow-lg"
+                  className="bg-accent-500 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-accent-600 transition-all shadow-xl hover:scale-105 flex items-center justify-center gap-3"
                 >
+                  <MessageCircle size={24} />
                   {t.emergency.whatsapp}
                 </a>
               </div>
-            </div>
-
-            <div className="lg:w-1/2 p-12 md:p-20">
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.name}</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.namePlaceholder} />
-                  </div>
-                  <div>
-                    <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.phone}</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.phonePlaceholder} />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.problem}</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-white">
-                    <option>{t.ctaFinal.form.options.wall}</option>
-                    <option>{t.ctaFinal.form.options.bill}</option>
-                    <option>{t.ctaFinal.form.options.pool}</option>
-                    <option>{t.ctaFinal.form.options.other}</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.message}</label>
-                  <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.messagePlaceholder}></textarea>
-                </div>
-                <button type="submit" className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary-100 hover:bg-primary-700 transition-all">
-                  {t.ctaFinal.form.submit}
-                </button>
-              </form>
             </div>
           </div>
         </div>
