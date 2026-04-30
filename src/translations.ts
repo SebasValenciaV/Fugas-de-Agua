@@ -41,6 +41,14 @@ export const translations = {
       p1: 'El 40% de los daños estructurales en edificios de Medellín inician con filtraciones no detectadas.',
       p2: 'Un apartamento puede perder hasta 200 litros de agua al día por una fuga invisible.',
       p3: 'La detección temprana con Geófono ahorra hasta un 70% en costos de reparación.',
+      labels: {
+        commercial: 'Locales Comerciales',
+        apartments: 'Apartamentos',
+        floors: 'Suelo / Pisos',
+        ceilings: 'Techos / Planchas',
+        bathrooms: 'Baños',
+        kitchens: 'Cocinas'
+      }
     },
     solution: {
       title: 'Detección con Geófono en Medellín',
@@ -79,6 +87,8 @@ export const translations = {
       subtitle: 'Atención prioritaria para emergencias las 24 horas.',
       call: 'Llamar ahora',
       whatsapp: 'WhatsApp',
+      emergencyTitle: '¿Tienes una emergencia?',
+      emergencyDesc: 'Nuestro equipo está listo para ayudarte las 24 horas del día por WhatsApp.'
     },
     testimonials: {
       title: 'Lo que dicen nuestros clientes',
@@ -87,6 +97,53 @@ export const translations = {
         { name: 'Elena Rodríguez', text: 'Excelente servicio. Muy limpios y profesionales. Me ahorraron tener que levantar todo el suelo de la cocina. Totalmente recomendados.' },
         { name: 'Juan Pérez', text: 'Atención rápida un domingo por la noche. Solucionaron una fuga en el jardín que estaba disparando mi factura de agua. Muy agradecido.' },
       ],
+    },
+    faq: {
+      title: 'Preguntas Frecuentes',
+      subtitle: 'Resolvemos tus dudas sobre nuestro servicio de detección de fugas.',
+      items: [
+        {
+          q: '¿Cómo detectan fugas sin romper paredes?',
+          a: 'Utilizamos tecnología de geófono acústico de alta precisión. Este equipo nos permite escuchar el sonido característico del agua escapando a presión por la tubería, localizando el punto exacto sin necesidad de picar paredes o suelos innecesariamente.'
+        },
+        {
+          q: '¿Cuánto tarda el servicio de detección?',
+          a: 'En la mayoría de los casos en Medellín, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías (cobre, PVC o CPVC) y el tamaño de la propiedad.'
+        },
+        {
+          q: '¿Atienden emergencias las 24 horas?',
+          a: 'Sí, contamos con un equipo de guardia disponible los 365 días del año para atender fugas urgentes que requieran intervención inmediata para evitar daños mayores.'
+        },
+        {
+          q: '¿En qué zonas trabajan?',
+          a: 'Cubrimos toda el área metropolitana y poblaciones circundantes en un radio de 50km. Consulta con nosotros si tu ubicación está dentro de nuestra zona de cobertura gratuita de desplazamiento.'
+        },
+        {
+          q: '¿El diagnóstico tiene garantía?',
+          a: 'Absolutamente. Si marcamos un punto y la fuga no se encuentra ahí, no cobramos el servicio de detección. Además, todas nuestras reparaciones cuentan con garantía por escrito.'
+        }
+      ]
+    },
+    ctaFinal: {
+      title: 'Detectamos y solucionamos fugas de agua antes de que dañen tu hogar',
+      subtitle: 'No dejes que una pequeña filtración se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo.',
+      location: 'Todo Medellín',
+      form: {
+        name: 'Nombre completo',
+        namePlaceholder: 'Ej. Juan Pérez',
+        phone: 'Teléfono',
+        phonePlaceholder: 'Ej. 300 123 4567',
+        problem: 'Tipo de problema',
+        options: {
+          wall: 'Fuga en pared/suelo',
+          bill: 'Factura de agua alta',
+          pool: 'Fuga en piscina',
+          other: 'Otro problema'
+        },
+        message: 'Mensaje (opcional)',
+        messagePlaceholder: 'Cuéntanos brevemente qué sucede...',
+        submit: 'Enviar solicitud de diagnóstico'
+      }
     },
     footer: {
       desc: 'Expertos en localización y reparación de fugas de agua con tecnología no invasiva. Servicio profesional, rápido y garantizado.',
@@ -149,6 +206,14 @@ export const translations = {
       p1: '40% of structural damage in Medellín buildings starts with undetected leaks.',
       p2: 'An apartment can lose up to 200 liters of water a day through an invisible leak.',
       p3: 'Early Geophone detection saves up to 70% in repair costs.',
+      labels: {
+        commercial: 'Commercial Premises',
+        apartments: 'Apartments',
+        floors: 'Floors / Ground',
+        ceilings: 'Ceilings / Slabs',
+        bathrooms: 'Bathrooms',
+        kitchens: 'Kitchens'
+      }
     },
     solution: {
       title: 'Geophone Detection in Medellín',
@@ -187,6 +252,8 @@ export const translations = {
       subtitle: 'Priority attention for emergencies 24 hours a day.',
       call: 'Call now',
       whatsapp: 'WhatsApp',
+      emergencyTitle: 'Do you have an emergency?',
+      emergencyDesc: 'Our team is ready to help you 24 hours a day via WhatsApp.'
     },
     testimonials: {
       title: 'What our customers say',
@@ -195,6 +262,53 @@ export const translations = {
         { name: 'Elena Rodríguez', text: 'Excellent service. Very clean and professional. They saved me from having to lift the entire kitchen floor. Totally recommended.' },
         { name: 'Juan Pérez', text: 'Fast attention on a Sunday night. They fixed a leak in the garden that was skyrocketing my water bill. Very grateful.' },
       ],
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'We solve your doubts about our leak detection service.',
+      items: [
+        {
+          q: 'How do you detect leaks without breaking walls?',
+          a: 'We use high-precision acoustic geophone technology. This equipment allows us to listen to the characteristic sound of water escaping under pressure through the pipe, locating the exact point without the need to unnecessarily chop into walls or floors.'
+        },
+        {
+          q: 'How long does the detection service take?',
+          a: 'In most cases in Medellín, the leak location is completed in a period of 1 to 3 hours, depending on the complexity of the pipe network (copper, PVC or CPVC) and the size of the property.'
+        },
+        {
+          q: 'Do you handle emergencies 24 hours a day?',
+          a: 'Yes, we have a standby team available 365 days a year to attend to urgent leaks that require immediate intervention to avoid major damage.'
+        },
+        {
+          q: 'Which areas do you work in?',
+          a: 'We cover the entire metropolitan area and surrounding towns within a 50km radius. Consult with us if your location is within our free travel coverage area.'
+        },
+        {
+          q: 'Does the diagnosis have a guarantee?',
+          a: 'Absolutely. If we mark a point and the leak is not found there, we do not charge for the detection service. Furthermore, all our repairs come with a written guarantee.'
+        }
+      ]
+    },
+    ctaFinal: {
+      title: 'We detect and solve water leaks before they damage your home',
+      subtitle: 'Don\'t let a small leak turn into an expensive renovation. Request your diagnosis today.',
+      location: 'All Medellín',
+      form: {
+        name: 'Full Name',
+        namePlaceholder: 'e.g. John Smith',
+        phone: 'Phone Number',
+        phonePlaceholder: 'e.g. +1 123 456 7890',
+        problem: 'Problem Type',
+        options: {
+          wall: 'Wall/Floor leak',
+          bill: 'High water bill',
+          pool: 'Pool leak',
+          other: 'Other problem'
+        },
+        message: 'Message (optional)',
+        messagePlaceholder: 'Briefly tell us what is happening...',
+        submit: 'Send diagnostic request'
+      }
     },
     footer: {
       desc: 'Experts in localization and repair of water leaks with non-invasive technology. Professional, fast, and guaranteed service.',

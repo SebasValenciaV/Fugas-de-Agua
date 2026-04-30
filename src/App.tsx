@@ -29,7 +29,13 @@ import {
   Plus,
   Minus,
   Globe,
-  TrendingUp
+  TrendingUp,
+  Building2,
+  Store,
+  Layers,
+  Layout,
+  Bath,
+  ChefHat
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { translations } from './translations';
@@ -212,17 +218,7 @@ export default function App() {
                 {t.hero.title}
               </h1>
               <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                {lang === 'es' ? (
-                  <>
-                    Detectamos y localizamos fugas ocultas con tecnología de <span className="font-bold text-primary-700">Geófono de alta precisión</span>. 
-                    <span className="font-bold text-primary-700"> Sin romper paredes innecesariamente.</span>
-                  </>
-                ) : (
-                  <>
-                    We detect and locate hidden leaks with <span className="font-bold text-primary-700">High-precision Geophone technology</span>. 
-                    <span className="font-bold text-primary-700"> Without breaking walls unnecessarily.</span>
-                  </>
-                )}
+                {t.hero.subtitle}
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
@@ -320,13 +316,24 @@ export default function App() {
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1595113316349-9fa4046a81d3?auto=format&fit=crop&q=80&w=600" 
-                alt="Statistics background humidifier" 
-                className="w-full h-auto"
-                referrerPolicy="no-referrer"
-              />
+            <div className="lg:w-1/2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 p-8 bg-white rounded-3xl shadow-xl border border-slate-100">
+                {[
+                  { icon: <Store className="text-primary-600" size={32} />, label: t.stats.labels.commercial },
+                  { icon: <Building2 className="text-primary-600" size={32} />, label: t.stats.labels.apartments },
+                  { icon: <Layers className="text-primary-600" size={32} />, label: t.stats.labels.floors },
+                  { icon: <Layout className="text-primary-600" size={32} />, label: t.stats.labels.ceilings },
+                  { icon: <Bath className="text-primary-600" size={32} />, label: t.stats.labels.bathrooms },
+                  { icon: <ChefHat className="text-primary-600" size={32} />, label: t.stats.labels.kitchens },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex flex-col items-center text-center gap-3 p-4 rounded-2xl bg-primary-50 transition-all hover:bg-primary-100 group">
+                    <div className="group-hover:scale-110 transition-transform">
+                      {item.icon}
+                    </div>
+                    <span className="text-sm font-bold text-primary-900">{item.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="lg:w-1/2">
               <h2 className="text-3xl md:text-4xl text-primary-950 mb-8 flex items-center gap-3">
@@ -526,37 +533,18 @@ export default function App() {
       <section id="faq" className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.nav.questions}</h2>
-            <p className="text-slate-600">{lang === 'es' ? 'Resolvemos tus dudas sobre nuestro servicio de detección de fugas.' : 'We solve your doubts about our leak detection service.'}</p>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.faq.title}</h2>
+            <p className="text-slate-600">{t.faq.subtitle}</p>
           </div>
 
           <div className="space-y-2">
-            <FAQItem 
-              question={lang === 'es' ? "¿Cómo detectan fugas sin romper paredes?" : "How do you detect leaks without breaking walls?"} 
-              answer={t.en ? translations.en.questions : t.es ? translations.es.questions : ""} // This was a bit tricky as question items weren't explicitly in translations.ts schema for questions yet, let's fix that or use hardcoded ternary for now as per lang
-              /* Actually let's use ternary for these specific FAQ items as I forgot to add them to translations.ts in detail */
-            />
-            {/* Reusing existing logic but with lang support */}
-            <FAQItem 
-              question={lang === 'es' ? "¿Cómo detectan fugas sin romper paredes?" : "How do you detect leaks without breaking walls?"} 
-              answer={lang === 'es' ? "Utilizamos tecnología de geófono acústico de alta precisión. Este equipo nos permite escuchar el sonido característico del agua escapando a presión por la tubería, localizando el punto exacto sin necesidad de picar paredes o suelos innecesariamente." : "We use high-precision acoustic geophone technology. This equipment allows us to listen to the characteristic sound of water escaping under pressure through the pipe, locating the exact point without the need to unnecessarily chop into walls or floors."} 
-            />
-            <FAQItem 
-              question={lang === 'es' ? "¿Cuánto tarda el servicio de detección?" : "How long does the detection service take?"} 
-              answer={lang === 'es' ? "En la mayoría de los casos en Medellín, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías (cobre, PVC o CPVC) y el tamaño de la propiedad." : "In most cases in Medellín, the leak location is completed in a period of 1 to 3 hours, depending on the complexity of the pipe network (copper, PVC or CPVC) and the size of the property."} 
-            />
-            <FAQItem 
-              question={lang === 'es' ? "¿Atienden emergencias las 24 horas?" : "Do you handle emergencies 24 hours a day?"} 
-              answer={lang === 'es' ? "Sí, contamos con un equipo de guardia disponible los 365 días del año para atender fugas urgentes que requieran intervención inmediata para evitar daños mayores." : "Yes, we have a standby team available 365 days a year to attend to urgent leaks that require immediate intervention to avoid major damage."} 
-            />
-            <FAQItem 
-              question={lang === 'es' ? "¿En qué zonas trabajan?" : "Which areas do you work in?"} 
-              answer={lang === 'es' ? "Cubrimos toda el área metropolitana y poblaciones circundantes en un radio de 50km. Consulta con nosotros si tu ubicación está dentro de nuestra zona de cobertura gratuita de desplazamiento." : "We cover the entire metropolitan area and surrounding towns within a 50km radius. Consult with us if your location is within our free travel coverage area."} 
-            />
-            <FAQItem 
-              question={lang === 'es' ? "¿El diagnóstico tiene garantía?" : "Does the diagnosis have a guarantee?"} 
-              answer={lang === 'es' ? "Absolutamente. Si marcamos un punto y la fuga no se encuentra ahí, no cobramos el servicio de detección. Además, todas nuestras reparaciones cuentan con garantía por escrito." : "Absolutely. If we mark a point and the leak is not found there, we do not charge for the detection service. Furthermore, all our repairs come with a written guarantee."} 
-            />
+            {t.faq.items.map((item, idx) => (
+              <FAQItem 
+                key={idx}
+                question={item.q} 
+                answer={item.a} 
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -567,10 +555,10 @@ export default function App() {
           <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
             <div className="w-full lg:w-1/2 p-12 md:p-20 bg-primary-900 text-white flex flex-col justify-center">
               <h2 className="text-3xl md:text-5xl mb-6 font-display font-bold leading-tight">
-                {lang === 'es' ? "Detectamos y solucionamos fugas de agua antes de que dañen tu hogar" : "We detect and solve water leaks before they damage your home"}
+                {t.ctaFinal.title}
               </h2>
               <p className="text-primary-200 text-lg mb-10 leading-relaxed">
-                {lang === 'es' ? "No dejes que una pequeña filtración se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo." : "Don't let a small leak turn into an expensive renovation. Request your diagnosis today."}
+                {t.ctaFinal.subtitle}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
@@ -589,7 +577,7 @@ export default function App() {
                   </div>
                   <div>
                     <p className="text-primary-300 text-sm">{t.footer.coverage}</p>
-                    <p className="text-xl font-bold">{lang === 'es' ? 'Todo Medellín' : 'All Medellín'}</p>
+                    <p className="text-xl font-bold">{t.ctaFinal.location}</p>
                   </div>
                 </div>
               </div>
@@ -610,25 +598,35 @@ export default function App() {
               </div>
             </div>
 
-            <div className="w-full lg:w-1/2 p-12 md:p-20 relative overflow-hidden flex items-center justify-center bg-slate-50">
-              <div className="absolute inset-0 bg-primary-600/5 -z-0"></div>
-              <div className="text-center relative z-10">
-                <div className="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center text-white mx-auto mb-6 shadow-xl shadow-primary-200">
-                  <MessageCircle size={40} />
+            <div className="lg:w-1/2 p-12 md:p-20">
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.name}</label>
+                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.namePlaceholder} />
+                  </div>
+                  <div>
+                    <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.phone}</label>
+                    <input type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.phonePlaceholder} />
+                  </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold text-primary-950 mb-4">
-                  {lang === 'es' ? "¿Tienes una emergencia?" : "Do you have an emergency?"}
-                </h3>
-                <p className="text-slate-600 mb-8 max-w-sm mx-auto">
-                  {lang === 'es' ? "Nuestro equipo está listo para ayudarte las 24 horas del día por WhatsApp." : "Our team is ready to help you 24 hours a day via WhatsApp."}
-                </p>
-                <a 
-                  href="https://wa.me/573003197620" 
-                  className="inline-block bg-accent-500 text-white px-10 py-4 rounded-2xl font-bold text-xl shadow-2xl shadow-accent-200 hover:scale-105 transition-transform"
-                >
-                  {t.emergency.whatsapp}
-                </a>
-              </div>
+                <div>
+                  <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.problem}</label>
+                  <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-white">
+                    <option>{t.ctaFinal.form.options.wall}</option>
+                    <option>{t.ctaFinal.form.options.bill}</option>
+                    <option>{t.ctaFinal.form.options.pool}</option>
+                    <option>{t.ctaFinal.form.options.other}</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-slate-700 font-bold mb-2">{t.ctaFinal.form.message}</label>
+                  <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder={t.ctaFinal.form.messagePlaceholder}></textarea>
+                </div>
+                <button type="submit" className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary-100 hover:bg-primary-700 transition-all">
+                  {t.ctaFinal.form.submit}
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -666,6 +664,7 @@ export default function App() {
               <ul className="space-y-4 text-slate-400">
                 <li className="flex items-center gap-3"><Phone size={18} className="text-primary-500" /> +57 3003197620</li>
                 <li className="flex items-center gap-3"><MessageCircle size={18} className="text-primary-500" /> WhatsApp Directo</li>
+                <li className="flex items-center gap-3"><Mail size={18} className="text-primary-500" /> jorge.valencia.benitez@gmail.com</li>
                 <li className="flex items-center gap-3"><Clock size={18} className="text-primary-500" /> 24 Horas / 7 Días</li>
               </ul>
             </div>
