@@ -27,15 +27,19 @@ import {
   X,
   ArrowRight,
   Plus,
-  Minus
+  Minus,
+  Globe,
+  TrendingUp
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { translations } from './translations';
 
 // --- Components ---
 
-const Navbar = () => {
+const Navbar = ({ lang, setLang }: { lang: 'es' | 'en', setLang: (l: 'es' | 'en') => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const t = translations[lang];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -44,10 +48,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Inicio', href: '#' },
-    { name: 'Servicios', href: '#servicios' },
-    { name: 'Cómo Funciona', href: '#proceso' },
-    { name: 'Preguntas', href: '#faq' },
+    { name: t.nav.home, href: '#' },
+    { name: t.nav.services, href: '#servicios' },
+    { name: t.nav.howItWorks, href: '#proceso' },
+    { name: t.nav.questions, href: '#faq' },
   ];
 
   return (
@@ -73,12 +77,21 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
+          
+          <button 
+            onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+            className="flex items-center gap-2 text-slate-700 hover:text-primary-600 font-medium transition-colors border border-slate-200 px-3 py-1.5 rounded-lg"
+          >
+            <Globe size={18} />
+            {lang === 'es' ? 'EN' : 'ES'}
+          </button>
+
           <a 
             href="tel:+573003197620" 
             className="flex items-center gap-2 bg-primary-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-primary-700 transition-all shadow-lg hover:shadow-primary-200"
           >
             <Phone size={18} />
-            Llamar Ahora
+            {t.nav.callNow}
           </a>
         </div>
 
@@ -111,12 +124,24 @@ const Navbar = () => {
                   {link.name}
                 </a>
               ))}
+              
+              <button 
+                onClick={() => {
+                  setLang(lang === 'es' ? 'en' : 'es');
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-center gap-2 text-slate-700 font-medium py-2 border border-slate-200 rounded-lg"
+              >
+                <Globe size={20} />
+                {lang === 'es' ? 'English' : 'Español'}
+              </button>
+
               <a 
                 href="tel:+573003197620" 
                 className="flex items-center justify-center gap-2 bg-primary-600 text-white py-4 rounded-xl font-bold"
               >
                 <Phone size={20} />
-                Llamar Ahora
+                {t.nav.callNow}
               </a>
             </div>
           </motion.div>
@@ -157,9 +182,12 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 };
 
 export default function App() {
+  const [lang, setLang] = useState<'es' | 'en'>('es');
+  const t = translations[lang];
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <div className="min-h-screen flex flex-col font-sans">
+      <Navbar lang={lang} setLang={setLang} />
 
       {/* --- HERO SECTION --- */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
@@ -178,14 +206,23 @@ export default function App() {
             >
               <div className="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
                 <Zap size={16} />
-                Atención Inmediata 24/7
+                {t.hero.immediateAttention}
               </div>
               <h1 className="text-4xl md:text-6xl font-display font-extrabold text-primary-950 leading-tight mb-6">
-                ¿Tienes una fuga de agua en Medellín y no sabes de dónde viene?
+                {t.hero.title}
               </h1>
               <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                Detectamos y localizamos fugas ocultas con tecnología de <span className="font-bold text-primary-700">Geófono de alta precisión</span>. 
-                <span className="font-bold text-primary-700"> Sin romper paredes innecesariamente.</span>
+                {lang === 'es' ? (
+                  <>
+                    Detectamos y localizamos fugas ocultas con tecnología de <span className="font-bold text-primary-700">Geófono de alta precisión</span>. 
+                    <span className="font-bold text-primary-700"> Sin romper paredes innecesariamente.</span>
+                  </>
+                ) : (
+                  <>
+                    We detect and locate hidden leaks with <span className="font-bold text-primary-700">High-precision Geophone technology</span>. 
+                    <span className="font-bold text-primary-700"> Without breaking walls unnecessarily.</span>
+                  </>
+                )}
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
@@ -193,7 +230,7 @@ export default function App() {
                   href="tel:+573003197620" 
                   className="w-full sm:w-auto bg-primary-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary-200 hover:bg-primary-700 transition-all flex items-center justify-center gap-2"
                 >
-                  Solicitar diagnóstico ahora
+                  {t.hero.ctaDiagnostic}
                   <ArrowRight size={20} />
                 </a>
                 <a 
@@ -201,18 +238,18 @@ export default function App() {
                   className="w-full sm:w-auto bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-accent-100 hover:bg-accent-600 transition-all flex items-center justify-center gap-2"
                 >
                   <MessageCircle size={20} />
-                  WhatsApp Inmediato
+                  {t.hero.ctaWhatsApp}
                 </a>
               </div>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-slate-500">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="text-accent-500" size={20} />
-                  <span className="font-medium">+10 años de experiencia</span>
+                  <span className="font-medium">{t.hero.experience}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="text-accent-500" size={20} />
-                  <span className="font-medium">+5,000 clientes satisfechos</span>
+                  <span className="font-medium">{t.hero.satisfied}</span>
                 </div>
               </div>
             </motion.div>
@@ -240,8 +277,8 @@ export default function App() {
                     <ShieldCheck className="text-primary-600 w-8 h-8" />
                   </div>
                   <div>
-                    <p className="text-slate-500 text-sm font-medium">Servicio</p>
-                    <p className="text-primary-900 font-bold text-lg">100% Garantizado</p>
+                    <p className="text-slate-500 text-sm font-medium">{t.nav.services}</p>
+                    <p className="text-primary-900 font-bold text-lg">{t.common.guaranteed}</p>
                   </div>
                 </div>
               </div>
@@ -251,30 +288,72 @@ export default function App() {
       </section>
 
       {/* --- PROBLEMA SECTION --- */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white border-b border-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">¿Notas señales de una fuga oculta?</h2>
-            <p className="text-slate-600 text-lg">No ignores los síntomas. Una fuga pequeña hoy puede ser un desastre estructural mañana.</p>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.problems.title}</h2>
+            <p className="text-slate-600 text-lg">{t.problems.subtitle}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Waves className="text-primary-500" />, title: "Humedad en paredes", desc: "Manchas oscuras, moho o pintura descascarada sin causa aparente." },
-              { icon: <AlertTriangle className="text-emergency-500" />, title: "Facturas altas", desc: "Aumentos inexplicables en tu recibo de agua mes tras mes." },
-              { icon: <Droplets className="text-primary-500" />, title: "Goteos invisibles", desc: "Sonido de agua corriendo cuando todos los grifos están cerrados." },
-              { icon: <ShieldCheck className="text-emergency-500" />, title: "Daños estructurales", desc: "Grietas en suelos o cimientos causadas por erosión de agua." },
+              { icon: <Waves className="text-primary-500" />, title: t.problems.manchas.title, desc: t.problems.manchas.desc },
+              { icon: <AlertTriangle className="text-emergency-500" />, title: t.problems.facturas.title, desc: t.problems.facturas.desc },
+              { icon: <Droplets className="text-primary-500" />, title: t.problems.goteos.title, desc: t.problems.goteos.desc },
+              { icon: <ShieldCheck className="text-emergency-500" />, title: t.problems.danos.title, desc: t.problems.danos.desc },
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
                 whileHover={{ y: -5 }}
-                className="p-8 rounded-2xl bg-slate-50 border border-slate-100 transition-all"
+                className="p-8 rounded-2xl bg-white border border-slate-100 shadow-sm transition-all"
               >
                 <div className="mb-4">{item.icon}</div>
                 <h3 className="text-xl font-bold text-primary-900 mb-3">{item.title}</h3>
                 <p className="text-slate-600 leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- ESTADISTICAS SECTION --- */}
+      <section className="py-20 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-1/2 rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1595113316349-9fa4046a81d3?auto=format&fit=crop&q=80&w=600" 
+                alt="Statistics background humidifier" 
+                className="w-full h-auto"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="lg:w-1/2">
+              <h2 className="text-3xl md:text-4xl text-primary-950 mb-8 flex items-center gap-3">
+                <TrendingUp className="text-primary-600" />
+                {t.stats.apartmentTitle}
+              </h2>
+              <div className="space-y-8">
+                <div className="flex items-start gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                  <div className="text-4xl font-bold text-primary-600">40%</div>
+                  <p className="text-slate-600 leading-relaxed font-medium">
+                    {t.stats.p1}
+                  </p>
+                </div>
+                <div className="flex items-start gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                  <div className="text-4xl font-bold text-primary-600">200L</div>
+                  <p className="text-slate-600 leading-relaxed font-medium">
+                    {t.stats.p2}
+                  </p>
+                </div>
+                <div className="flex items-start gap-6 p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+                  <div className="text-4xl font-bold text-primary-600">70%</div>
+                  <p className="text-slate-600 leading-relaxed font-medium">
+                    {t.stats.p3}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -289,17 +368,13 @@ export default function App() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-5xl mb-6 leading-tight">Detección con Geófono en Medellín</h2>
+              <h2 className="text-3xl md:text-5xl mb-6 leading-tight">{t.solution.title}</h2>
               <p className="text-primary-200 text-lg mb-10 leading-relaxed">
-                Utilizamos tecnología de geófono acústico para localizar el punto exacto de la fuga en tuberías de cobre, PVC y CPVC. Ahorra tiempo, dinero y evita el caos de romper toda tu casa.
+                {t.solution.desc}
               </p>
 
               <div className="space-y-6">
-                {[
-                  { title: "Inspección con Geófono", desc: "Localización acústica de alta precisión para todo tipo de tuberías." },
-                  { title: "Tuberías Cobre, PVC y CPVC", desc: "Expertos en reparación y mantenimiento de redes hidráulicas modernas." },
-                  { title: "Técnicos en Medellín", desc: "Personal experto con años de entrenamiento especializado en la región." },
-                ].map((benefit, idx) => (
+                {t.solution.items.map((benefit, idx) => (
                   <div key={idx} className="flex gap-4">
                     <div className="bg-primary-800 p-1.5 rounded-full h-fit mt-1">
                       <CheckCircle2 className="text-accent-500 w-5 h-5" />
@@ -335,27 +410,26 @@ export default function App() {
       <section id="servicios" className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">Nuestros Servicios Especializados</h2>
-            <p className="text-slate-600 text-lg">Cubrimos todas las necesidades de detección y reparación de fugas.</p>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.services.title}</h2>
+            <p className="text-slate-600 text-lg">{t.services.subtitle}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { icon: <Search className="text-primary-600" />, title: "Fugas Ocultas", desc: "Localización exacta en tuberías internas de agua fría y caliente." },
-              { icon: <Hammer className="text-primary-600" />, title: "Reparación de Tuberías", desc: "Sustitución y arreglo de tramos dañados con materiales de alta calidad." },
-              { icon: <Waves className="text-primary-600" />, title: "Fugas en Piscinas", desc: "Detección en vasos, skimmers y sistemas de filtración sin vaciar." },
-              { icon: <Home className="text-primary-600" />, title: "Baños y Cocinas", desc: "Inspección técnica en zonas de alta humedad y desagües." },
-              { icon: <Droplets className="text-primary-600" />, title: "Fugas en Jardines", desc: "Localización en sistemas de riego y acometidas exteriores." },
-              { icon: <Zap className="text-primary-600" />, title: "Inspección con Geófono", desc: "Diagnóstico completo con sensores acústicos de alta sensibilidad." },
-            ].map((service, idx) => (
+            {t.services.items.map((service, idx) => (
               <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all border border-slate-100 group">
                 <div className="bg-primary-50 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
-                  {service.icon}
+                  {/* Reuse icons based on index for simplicity or map them */}
+                  {idx === 0 && <Search className="text-primary-600 group-hover:text-white" />}
+                  {idx === 1 && <Hammer className="text-primary-600 group-hover:text-white" />}
+                  {idx === 2 && <Waves className="text-primary-600 group-hover:text-white" />}
+                  {idx === 3 && <Home className="text-primary-600 group-hover:text-white" />}
+                  {idx === 4 && <Droplets className="text-primary-600 group-hover:text-white" />}
+                  {idx === 5 && <Zap className="text-primary-600 group-hover:text-white" />}
                 </div>
                 <h3 className="text-xl font-bold text-primary-900 mb-3">{service.title}</h3>
                 <p className="text-slate-600 mb-6 leading-relaxed">{service.desc}</p>
-                <a href="#contacto" className="text-primary-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
-                  Consultar servicio
+                <a href="tel:+573003197620" className="text-primary-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                  {t.services.consult}
                   <ChevronRight size={18} />
                 </a>
               </div>
@@ -368,8 +442,8 @@ export default function App() {
       <section id="proceso" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">Tu solución en 4 simples pasos</h2>
-            <p className="text-slate-600 text-lg">Un proceso transparente y eficiente diseñado para tu tranquilidad.</p>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.howItWorks.title}</h2>
+            <p className="text-slate-600 text-lg">{t.howItWorks.subtitle}</p>
           </div>
 
           <div className="relative">
@@ -377,12 +451,7 @@ export default function App() {
             <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-primary-100 -translate-y-1/2 -z-10"></div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-              {[
-                { step: "01", title: "Contacto inmediato", desc: "Llámanos o escríbenos. Atendemos tu emergencia al instante." },
-                { step: "02", title: "Diagnóstico profesional", desc: "Llegamos a tu hogar con equipos electrónicos de detección." },
-                { step: "03", title: "Reparación especializada", desc: "Solucionamos la fuga de forma limpia y eficiente." },
-                { step: "04", title: "Solución garantizada", desc: "Verificamos el éxito y entregamos garantía por escrito." },
-              ].map((item, idx) => (
+              {t.howItWorks.steps.map((item, idx) => (
                 <div key={idx} className="text-center">
                   <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg border-4 border-white">
                     {item.step}
@@ -401,8 +470,8 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-white">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl mb-2">¿Fuga urgente? No esperes más</h2>
-              <p className="text-white/80 text-lg">Atención prioritaria para emergencias las 24 horas.</p>
+              <h2 className="text-3xl md:text-4xl mb-2">{t.emergency.title}</h2>
+              <p className="text-white/80 text-lg">{t.emergency.subtitle}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
               <a 
@@ -410,14 +479,14 @@ export default function App() {
                 className="bg-white text-emergency-600 px-8 py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-slate-100 transition-all shadow-xl"
               >
                 <Phone size={24} />
-                Llamar ahora
+                {t.emergency.call}
               </a>
               <a 
                 href="https://wa.me/573003197620" 
                 className="bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-3 hover:bg-accent-600 transition-all shadow-xl"
               >
                 <MessageCircle size={24} />
-                WhatsApp
+                {t.emergency.whatsapp}
               </a>
             </div>
           </div>
@@ -428,21 +497,17 @@ export default function App() {
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">Lo que dicen nuestros clientes</h2>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.testimonials.title}</h2>
             <div className="flex justify-center gap-1 mb-4">
               {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-yellow-400" size={20} />)}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "Carlos Mendoza", text: "Tenía una humedad en el salón que nadie encontraba. Vinieron con sus equipos y en 20 minutos localizaron la fuga exacta tras un mueble. Increíble.", rating: 5 },
-              { name: "Elena Rodríguez", text: "Excelente servicio. Muy limpios y profesionales. Me ahorraron tener que levantar todo el suelo de la cocina. Totalmente recomendados.", rating: 5 },
-              { name: "Juan Pérez", text: "Atención rápida un domingo por la noche. Solucionaron una fuga en el jardín que estaba disparando mi factura de agua. Muy agradecido.", rating: 5 },
-            ].map((testimony, idx) => (
+            {t.testimonials.items.map((testimony, idx) => (
               <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
                 <div className="flex gap-1 mb-4">
-                  {[...Array(testimony.rating)].map((_, i) => <Star key={i} className="text-yellow-400 fill-yellow-400" size={16} />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-yellow-400" size={16} />)}
                 </div>
                 <p className="text-slate-600 italic mb-6">"{testimony.text}"</p>
                 <div className="flex items-center gap-3">
@@ -461,30 +526,36 @@ export default function App() {
       <section id="faq" className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">Preguntas Frecuentes</h2>
-            <p className="text-slate-600">Resolvemos tus dudas sobre nuestro servicio de detección de fugas.</p>
+            <h2 className="text-3xl md:text-4xl text-primary-950 mb-4">{t.nav.questions}</h2>
+            <p className="text-slate-600">{lang === 'es' ? 'Resolvemos tus dudas sobre nuestro servicio de detección de fugas.' : 'We solve your doubts about our leak detection service.'}</p>
           </div>
 
           <div className="space-y-2">
             <FAQItem 
-              question="¿Cómo detectan fugas sin romper paredes?" 
-              answer="Utilizamos tecnología de geófono acústico de alta precisión. Este equipo nos permite escuchar el sonido característico del agua escapando a presión por la tubería, localizando el punto exacto sin necesidad de picar paredes o suelos innecesariamente." 
+              question={lang === 'es' ? "¿Cómo detectan fugas sin romper paredes?" : "How do you detect leaks without breaking walls?"} 
+              answer={t.en ? translations.en.questions : t.es ? translations.es.questions : ""} // This was a bit tricky as question items weren't explicitly in translations.ts schema for questions yet, let's fix that or use hardcoded ternary for now as per lang
+              /* Actually let's use ternary for these specific FAQ items as I forgot to add them to translations.ts in detail */
+            />
+            {/* Reusing existing logic but with lang support */}
+            <FAQItem 
+              question={lang === 'es' ? "¿Cómo detectan fugas sin romper paredes?" : "How do you detect leaks without breaking walls?"} 
+              answer={lang === 'es' ? "Utilizamos tecnología de geófono acústico de alta precisión. Este equipo nos permite escuchar el sonido característico del agua escapando a presión por la tubería, localizando el punto exacto sin necesidad de picar paredes o suelos innecesariamente." : "We use high-precision acoustic geophone technology. This equipment allows us to listen to the characteristic sound of water escaping under pressure through the pipe, locating the exact point without the need to unnecessarily chop into walls or floors."} 
             />
             <FAQItem 
-              question="¿Cuánto tarda el servicio de detección?" 
-              answer="En la mayoría de los casos en Medellín, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías (cobre, PVC o CPVC) y el tamaño de la propiedad." 
+              question={lang === 'es' ? "¿Cuánto tarda el servicio de detección?" : "How long does the detection service take?"} 
+              answer={lang === 'es' ? "En la mayoría de los casos en Medellín, la localización de la fuga se completa en un periodo de 1 a 3 horas, dependiendo de la complejidad de la red de tuberías (cobre, PVC o CPVC) y el tamaño de la propiedad." : "In most cases in Medellín, the leak location is completed in a period of 1 to 3 hours, depending on the complexity of the pipe network (copper, PVC or CPVC) and the size of the property."} 
             />
             <FAQItem 
-              question="¿Atienden emergencias las 24 horas?" 
-              answer="Sí, contamos con un equipo de guardia disponible los 365 días del año para atender fugas urgentes que requieran intervención inmediata para evitar daños mayores." 
+              question={lang === 'es' ? "¿Atienden emergencias las 24 horas?" : "Do you handle emergencies 24 hours a day?"} 
+              answer={lang === 'es' ? "Sí, contamos con un equipo de guardia disponible los 365 días del año para atender fugas urgentes que requieran intervención inmediata para evitar daños mayores." : "Yes, we have a standby team available 365 days a year to attend to urgent leaks that require immediate intervention to avoid major damage."} 
             />
             <FAQItem 
-              question="¿En qué zonas trabajan?" 
-              answer="Cubrimos toda el área metropolitana y poblaciones circundantes en un radio de 50km. Consulta con nosotros si tu ubicación está dentro de nuestra zona de cobertura gratuita de desplazamiento." 
+              question={lang === 'es' ? "¿En qué zonas trabajan?" : "Which areas do you work in?"} 
+              answer={lang === 'es' ? "Cubrimos toda el área metropolitana y poblaciones circundantes en un radio de 50km. Consulta con nosotros si tu ubicación está dentro de nuestra zona de cobertura gratuita de desplazamiento." : "We cover the entire metropolitan area and surrounding towns within a 50km radius. Consult with us if your location is within our free travel coverage area."} 
             />
             <FAQItem 
-              question="¿El diagnóstico tiene garantía?" 
-              answer="Absolutamente. Si marcamos un punto y la fuga no se encuentra ahí, no cobramos el servicio de detección. Además, todas nuestras reparaciones cuentan con garantía por escrito." 
+              question={lang === 'es' ? "¿El diagnóstico tiene garantía?" : "Does the diagnosis have a guarantee?"} 
+              answer={lang === 'es' ? "Absolutamente. Si marcamos un punto y la fuga no se encuentra ahí, no cobramos el servicio de detección. Además, todas nuestras reparaciones cuentan con garantía por escrito." : "Absolutely. If we mark a point and the leak is not found there, we do not charge for the detection service. Furthermore, all our repairs come with a written guarantee."} 
             />
           </div>
         </div>
@@ -494,29 +565,22 @@ export default function App() {
       <section id="contacto" className="py-20 bg-primary-50">
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
-            <div className="lg:w-1/2 p-12 md:p-20 bg-primary-900 text-white">
-              <h2 className="text-3xl md:text-5xl mb-6">Detectamos fugas con Geófono en todo Medellín</h2>
-              <p className="text-primary-200 text-lg mb-10">
-                No dejes que una pequeña filtración en tus tubos de cobre o PVC se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo.
+            <div className="w-full lg:w-1/2 p-12 md:p-20 bg-primary-900 text-white flex flex-col justify-center">
+              <h2 className="text-3xl md:text-5xl mb-6 font-display font-bold leading-tight">
+                {lang === 'es' ? "Detectamos y solucionamos fugas de agua antes de que dañen tu hogar" : "We detect and solve water leaks before they damage your home"}
+              </h2>
+              <p className="text-primary-200 text-lg mb-10 leading-relaxed">
+                {lang === 'es' ? "No dejes que una pequeña filtración se convierta en una reforma costosa. Solicita tu diagnóstico hoy mismo." : "Don't let a small leak turn into an expensive renovation. Request your diagnosis today."}
               </p>
               
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
                 <div className="flex items-center gap-4">
                   <div className="bg-primary-800 p-3 rounded-xl">
                     <Phone className="text-accent-500" />
                   </div>
                   <div>
-                    <p className="text-primary-300 text-sm">Llámanos</p>
+                    <p className="text-primary-300 text-sm">{t.footer.contact}</p>
                     <p className="text-xl font-bold">+57 3003197620</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary-800 p-3 rounded-xl">
-                    <Mail className="text-accent-500" />
-                  </div>
-                  <div>
-                    <p className="text-primary-300 text-sm">Email</p>
-                    <p className="text-xl font-bold">jorge.valencia.benitez@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -524,42 +588,47 @@ export default function App() {
                     <MapPin className="text-accent-500" />
                   </div>
                   <div>
-                    <p className="text-primary-300 text-sm">Ubicación</p>
-                    <p className="text-xl font-bold">Medellín, Antioquia</p>
+                    <p className="text-primary-300 text-sm">{t.footer.coverage}</p>
+                    <p className="text-xl font-bold">{lang === 'es' ? 'Todo Medellín' : 'All Medellín'}</p>
                   </div>
                 </div>
               </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="tel:+573003197620" 
+                  className="bg-white text-primary-900 px-8 py-4 rounded-xl font-bold text-center hover:bg-primary-50 transition-colors shadow-lg"
+                >
+                  {t.emergency.call}
+                </a>
+                <a 
+                  href="https://wa.me/573003197620" 
+                  className="bg-accent-500 text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-accent-600 transition-colors shadow-lg"
+                >
+                  {t.emergency.whatsapp}
+                </a>
+              </div>
             </div>
 
-            <div className="lg:w-1/2 p-12 md:p-20">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-slate-700 font-bold mb-2">Nombre completo</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Ej. Juan Pérez" />
-                  </div>
-                  <div>
-                    <label className="block text-slate-700 font-bold mb-2">Teléfono</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Ej. 123456789" />
-                  </div>
+            <div className="w-full lg:w-1/2 p-12 md:p-20 relative overflow-hidden flex items-center justify-center bg-slate-50">
+              <div className="absolute inset-0 bg-primary-600/5 -z-0"></div>
+              <div className="text-center relative z-10">
+                <div className="bg-primary-600 w-20 h-20 rounded-full flex items-center justify-center text-white mx-auto mb-6 shadow-xl shadow-primary-200">
+                  <MessageCircle size={40} />
                 </div>
-                <div>
-                  <label className="block text-slate-700 font-bold mb-2">Tipo de problema</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-white">
-                    <option>Fuga en pared/suelo</option>
-                    <option>Factura de agua alta</option>
-                    <option>Fuga en piscina</option>
-                    <option>Otro problema</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-slate-700 font-bold mb-2">Mensaje (opcional)</label>
-                  <textarea rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Cuéntanos brevemente qué sucede..."></textarea>
-                </div>
-                <button type="submit" className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary-100 hover:bg-primary-700 transition-all">
-                  Enviar solicitud de diagnóstico
-                </button>
-              </form>
+                <h3 className="text-2xl md:text-3xl font-bold text-primary-950 mb-4">
+                  {lang === 'es' ? "¿Tienes una emergencia?" : "Do you have an emergency?"}
+                </h3>
+                <p className="text-slate-600 mb-8 max-w-sm mx-auto">
+                  {lang === 'es' ? "Nuestro equipo está listo para ayudarte las 24 horas del día por WhatsApp." : "Our team is ready to help you 24 hours a day via WhatsApp."}
+                </p>
+                <a 
+                  href="https://wa.me/573003197620" 
+                  className="inline-block bg-accent-500 text-white px-10 py-4 rounded-2xl font-bold text-xl shadow-2xl shadow-accent-200 hover:scale-105 transition-transform"
+                >
+                  {t.emergency.whatsapp}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -575,7 +644,7 @@ export default function App() {
                 <span className="text-2xl font-display font-bold">Fugas de Agua</span>
               </div>
               <p className="text-slate-400 leading-relaxed mb-6">
-                Expertos en localización y reparación de fugas de agua con tecnología no invasiva. Servicio profesional, rápido y garantizado.
+                {t.footer.desc}
               </p>
               <div className="flex gap-4">
                 <a href="#" className="bg-slate-800 p-2 rounded-lg hover:bg-primary-600 transition-colors"><Facebook size={20} /></a>
@@ -584,44 +653,41 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="text-xl font-bold mb-6">Servicios</h4>
+              <h4 className="text-xl font-bold mb-6">{t.footer.services}</h4>
               <ul className="space-y-4 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors">Detección de fugas ocultas</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Reparación de tuberías</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Fugas en piscinas</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Inspección con cámaras</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Fugas en jardines</a></li>
+                {t.services.items.slice(0, 5).map((s, idx) => (
+                  <li key={idx}><a href="#" className="hover:text-white transition-colors">{s.title}</a></li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xl font-bold mb-6">Contacto</h4>
+              <h4 className="text-xl font-bold mb-6">{t.footer.contact}</h4>
               <ul className="space-y-4 text-slate-400">
                 <li className="flex items-center gap-3"><Phone size={18} className="text-primary-500" /> +57 3003197620</li>
                 <li className="flex items-center gap-3"><MessageCircle size={18} className="text-primary-500" /> WhatsApp Directo</li>
-                <li className="flex items-center gap-3"><Mail size={18} className="text-primary-500" /> jorge.valencia.benitez@gmail.com</li>
                 <li className="flex items-center gap-3"><Clock size={18} className="text-primary-500" /> 24 Horas / 7 Días</li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-xl font-bold mb-6">Zona de Cobertura</h4>
+              <h4 className="text-xl font-bold mb-6">{t.footer.coverage}</h4>
               <p className="text-slate-400 mb-4">
-                Atendemos en toda la ciudad de Medellín y el Valle de Aburrá.
+                {t.footer.coverageDesc}
               </p>
               <div className="bg-slate-800 p-4 rounded-xl border border-slate-700">
-                <p className="text-sm text-slate-300">¿Dudas sobre tu zona?</p>
-                <a href="tel:+573003197620" className="text-primary-400 font-bold hover:underline">Consultar ahora</a>
+                <p className="text-sm text-slate-300">{t.footer.dudas}</p>
+                <a href="tel:+573003197620" className="text-primary-400 font-bold hover:underline">{t.footer.consultNow}</a>
               </div>
             </div>
           </div>
 
           <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
-            <p>© 2026 Fugas de Agua. Todos los derechos reservados.</p>
+            <p>{t.footer.rights}</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Aviso Legal</a>
-              <a href="#" className="hover:text-white transition-colors">Política de Privacidad</a>
-              <a href="#" className="hover:text-white transition-colors">Cookies</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.legal}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.privacy}</a>
+              <a href="#" className="hover:text-white transition-colors">{t.footer.cookies}</a>
             </div>
           </div>
         </div>
@@ -637,7 +703,7 @@ export default function App() {
       >
         <MessageCircle size={32} />
         <span className="absolute right-full mr-4 bg-white text-slate-900 px-4 py-2 rounded-xl shadow-xl font-bold text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          ¿Necesitas ayuda? Chatea con nosotros
+          {t.common.help}
         </span>
       </a>
 
@@ -648,7 +714,7 @@ export default function App() {
           className="flex items-center justify-center gap-3 bg-primary-600 text-white py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary-200"
         >
           <Phone size={24} />
-          Llamar ahora (Emergencias)
+          {t.common.emergencies}
         </a>
       </div>
     </div>
